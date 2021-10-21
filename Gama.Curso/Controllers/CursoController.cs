@@ -1,0 +1,83 @@
+﻿using Gama.Curso.Requests;
+using Gama.Curso.Responses;
+using Gama.Curso.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Gama.Curso.Controllers
+{
+    [Route("V{version:ApiVersion}/cursos")]
+    [ApiController]
+    [ApiVersion("1")]
+    public class CursoController : ControllerBase
+    {
+        private readonly ICursoService _cursoService;
+
+        public CursoController(ICursoService cursoService)
+        {
+            _cursoService = cursoService;
+        }
+        /// <summary>
+        /// Método para gerar um curso com suas aulas
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
+        public async Task<ActionResult<CursoAulasResponse>> CriarCurso([FromBody] CriarCursoRequest request)
+        {
+            return Ok(await _cursoService.CriarCurso(request));
+        }
+        /// <summary>
+        /// Método para buscar um curso
+        /// </summary>
+        /// <param name="codigoCurso"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{codigoCurso}")]
+        [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
+        public async Task<ActionResult<CursoAulasResponse>> BuscarCurso(int codigoCurso)
+        {
+            return Ok(await _cursoService.BuscarCurso(codigoCurso));
+        }
+        /// <summary>
+        /// Método para buscar todos os cursos cadastrados
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<DadosCursoResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<DadosCursoResponse>>> BuscarCursos()
+        {
+            return Ok(await _cursoService.BuscarCursos());
+        }
+        /// <summary>
+        /// Método para deletar uma aula de um curso
+        /// </summary>
+        /// <param name="codigoCuso"></param>
+        /// <param name="codigoAula"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("{codigoCuso}/aulas/{codigoAula}")]
+        [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
+        public async Task<ActionResult<CursoAulasResponse>> DeletarAulaCurso(int codigoCuso, int codigoAula)
+        {
+            return Ok(await _cursoService.DeletarAulaCurso(codigoCuso, codigoAula));
+        }
+        /// <summary>
+        /// Método para deletar um curso
+        /// </summary>
+        /// <param name="codigoCuso"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("{codigoCuso}")]
+        [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
+        public async Task<ActionResult<CursoAulasResponse>> BuscarCursos(int codigoCuso)
+        {
+            return Ok(await _cursoService.DeletarCurso(codigoCuso));
+        }
+    }
+}

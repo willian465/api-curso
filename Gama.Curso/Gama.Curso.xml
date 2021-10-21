@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gama.Curso</name>
+    </assembly>
+    <members>
+        <member name="M:Gama.Curso.Controllers.CursoController.CriarCurso(Gama.Curso.Requests.CriarCursoRequest)">
+            <summary>
+            Método para gerar um curso com suas aulas
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gama.Curso.Controllers.CursoController.BuscarCurso(System.Int32)">
+            <summary>
+            Método para buscar um curso
+            </summary>
+            <param name="codigoCurso"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gama.Curso.Controllers.CursoController.BuscarCursos">
+            <summary>
+            Método para buscar todos os cursos cadastrados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gama.Curso.Controllers.CursoController.DeletarAulaCurso(System.Int32,System.Int32)">
+            <summary>
+            Método para deletar uma aula de um curso
+            </summary>
+            <param name="codigoCuso"></param>
+            <param name="codigoAula"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gama.Curso.Controllers.CursoController.BuscarCursos(System.Int32)">
+            <summary>
+            Método para deletar um curso
+            </summary>
+            <param name="codigoCuso"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Conta.Extensions.DI.RegistrationDependencyInjection.RegistrarDependencias(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Método para realizar o registro das dependências
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+    </members>
+</doc>

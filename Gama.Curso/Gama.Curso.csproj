@@ -4,18 +4,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Repositories\Interfaces\" />
-    <Folder Include="Responses\" />
-    <Folder Include="Requests\" />
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Projetos\Estudos\GamaAcademy\api-curso\Gama.Curso\Gama.Curso.xml</DocumentationFile>
+  </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Dapper" Version="2.0.90" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />

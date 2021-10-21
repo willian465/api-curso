@@ -39,7 +39,7 @@ namespace Gama.Curso
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Conta", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Curso", Version = "v1" });
                 string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);

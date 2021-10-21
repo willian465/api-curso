@@ -16,7 +16,7 @@ namespace Gama.Curso.Repositories.Base
             try
             {
                 dbConnection = new NpgsqlConnection(
-                    "User ID = postgres; Password = Am!nA!2O2; Host = dindin.c1rfboikfug7.us-east-1.rds.amazonaws.com; Port = 5432; Database = cursosdd");
+                    "User ID = claraw; Password = Am!nA!2O2; Host = dindin.c1rfboikfug7.us-east-1.rds.amazonaws.com; Port = 5432; Database = cursosdd");
                 dbConnection.Open();
             }
             catch (Exception e)
