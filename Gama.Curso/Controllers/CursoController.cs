@@ -79,6 +79,12 @@ namespace Gama.Curso.Controllers
         {
             return Ok(await _cursoService.DeletarCurso(codigoCuso));
         }
+        /// <summary>
+        /// Método para atualizar a descrição do curso
+        /// </summary>
+        /// <param name="codigoCuso"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPatch]
         [Route("{codigoCuso}")]
         [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
