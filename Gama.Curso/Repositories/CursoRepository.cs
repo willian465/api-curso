@@ -73,7 +73,7 @@ namespace Gama.Curso.Repositories
                                     DESCRICAO_CURSO,
                                     ATIVO)
                                 VALUES
-                                    (@NomeCurso, @CaminhaCapa, @NomeProfessor, @DescricaoCurso, TRUE)
+                                    (@NomeCurso, @CaminhoCapa, @NomeProfessor, @DescricaoCurso, TRUE)
                                 RETURNING COD_CURSO";
 
             using (IDbConnection connection = GetConnection())
