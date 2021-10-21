@@ -126,5 +126,14 @@ namespace Gama.Curso.Repositories
                 return await connection.QueryAsync<DadosCursoModel>(sql);
             }
         }
+        public async Task AlterarCurso(int codigoCurso, AlterarCursoArgument argument)
+        {
+            const string sql = @"UPDATE CURSO SET NOM_CURSO = @NomeCurso WHERE cod_curso = @CodigoCurso";
+
+            using (IDbConnection connection = GetConnection())
+            {
+                await connection.ExecuteAsync(sql, new { CodigoCurso = codigoCurso, argument.NomeCurso });
+            }
+        }
     }
 }

@@ -15,5 +15,6 @@ namespace Gama.Curso.Repositories.Interfaces
         Task DeletarAulaCurso(int codigoCurso, int codigoAula);
         Task DeletarCurso(int codigoCurso);
         Task<IEnumerable<DadosCursoModel>> BuscarCursos();
+        Task AlterarCurso(int codigoCurso, AlterarCursoArgument argument);
     }
 }

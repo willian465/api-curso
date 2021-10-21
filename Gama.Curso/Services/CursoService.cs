@@ -28,6 +28,13 @@ namespace Gama.Curso.Services
             _converter = converter;
         }
 
+        public async Task<bool> AlterarCurso(int codigoCurso, AlterarCursoRequest request)
+        {
+            await _cursoRepository.AlterarCurso(codigoCurso, new AlterarCursoArgument() { NomeCurso = request.NomeCurso });
+
+            return true;
+        }
+
         public async Task<CursoAulasResponse> BuscarCurso(int codigoCurso)
         {
             if (codigoCurso == 0)
