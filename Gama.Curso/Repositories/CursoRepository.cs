@@ -28,7 +28,7 @@ namespace Gama.Curso.Repositories
                                     AL.ATIVO Ativo,
                                     AC.ORDEM Ordem,
                                     AL.DAT_CADASTRO DataCadastro
-                                FROM CURSO CUR 
+                               FROM CURSO CUR 
                                     LEFT JOIN AULA_CURSO AC ON AC.COD_CURSO = CUR.COD_CURSO AND AC.ATIVO
                                     LEFT JOIN AULA AL ON AL.COD_AULA = AC.COD_AULA AND AL.ATIVO
                             WHERE CUR.COD_CURSO = @CodigoCurso
@@ -68,10 +68,10 @@ namespace Gama.Curso.Repositories
         {
             const string sql = @"INSERT INTO CURSO
                                     (NOM_CURSO,
-                                    CAMINHO_CAPA,
-                                    NOM_PROFESSOR,
-                                    DESCRICAO_CURSO,
-                                    ATIVO)
+                                     CAMINHO_CAPA,
+                                     NOM_PROFESSOR,
+                                     DESCRICAO_CURSO,
+                                     ATIVO)
                                 VALUES
                                     (@NomeCurso, @CaminhoCapa, @NomeProfessor, @DescricaoCurso, TRUE)
                                 RETURNING COD_CURSO";
@@ -118,7 +118,7 @@ namespace Gama.Curso.Repositories
    	                                    CUR.NOM_PROFESSOR NomeProfessor,
    	                                    CUR.DESCRICAO_CURSO DescricaoCurso,
                                         CUR.DAT_CADASTRO DataCadastro
-                                     FROM CURSO CUR 
+                                    FROM CURSO CUR 
                                     WHERE ATIVO";
 
             using (IDbConnection connection = GetConnection())

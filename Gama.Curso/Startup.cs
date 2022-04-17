@@ -35,11 +35,11 @@ namespace Gama.Curso
                 builder => builder.AllowAnyOrigin()));
 
             // registro das dependências
-            services.RegistrarDependencias(_configuration);
+            services.RegistrarDependencias(_configuration);            
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Curso", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Curso 2", Version = "v1" });
                 string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
@@ -52,6 +52,17 @@ namespace Gama.Curso
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.ApiVersionReader = new QueryStringApiVersionReader();
                 options.ApiVersionSelector = new CurrentImplementationApiVersionSelector(options);
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyOrigin();
+                    builder.WithExposedHeaders("Content-Disposition");
+                });
             });
 
         }
@@ -67,8 +78,9 @@ namespace Gama.Curso
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("AllowAll");
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {
