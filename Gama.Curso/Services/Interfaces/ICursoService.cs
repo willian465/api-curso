@@ -10,10 +10,10 @@ namespace Gama.Curso.Services.Interfaces
     public interface ICursoService
     {
         Task<CursoAulasResponse> CriarCurso(CriarCursoRequest request);
-        Task<CursoAulasResponse> BuscarCurso(int codigoCurso);
+        Task<IEnumerable<CursoAulasResponse>> BuscarCursos();
         Task<bool> DeletarAulaCurso(int codigoCurso, int codigoAula);
         Task<bool> DeletarCurso(int codigoCurso);
-        Task<IEnumerable<DadosCursoResponse>> BuscarCursos();
+        Task<IEnumerable<DadosCursoResponse>> BuscarDadosCursos();
         Task<bool> AlterarCurso(int codigoCurso, AlterarCursoRequest request);
     }
 }

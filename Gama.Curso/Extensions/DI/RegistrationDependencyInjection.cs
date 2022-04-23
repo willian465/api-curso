@@ -7,7 +7,7 @@ using Gama.Curso.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Conta.Extensions.DI
+namespace Gama.Curso.Extensions.DI
 {
     public static class RegistrationDependencyInjection
     {

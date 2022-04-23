@@ -38,21 +38,21 @@ namespace Gama.Curso.Controllers
         /// <param name="codigoCurso"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{codigoCurso}")]
         [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
-        public async Task<ActionResult<CursoAulasResponse>> BuscarCurso(int codigoCurso)
+        public async Task<ActionResult<IEnumerable<CursoAulasResponse>>> BuscarCursos()
         {
-            return Ok(await _cursoService.BuscarCurso(codigoCurso));
+            return Ok(await _cursoService.BuscarCursos());
         }
         /// <summary>
         /// Método para buscar todos os cursos cadastrados
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("ativo")]
         [ProducesResponseType(typeof(IEnumerable<DadosCursoResponse>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<DadosCursoResponse>>> BuscarCursos()
+        public async Task<ActionResult<IEnumerable<DadosCursoResponse>>> BuscarDadosCursos()
         {
-            return Ok(await _cursoService.BuscarCursos());
+            return Ok(await _cursoService.BuscarDadosCursos());
         }
         /// <summary>
         /// Método para deletar uma aula de um curso
@@ -75,7 +75,7 @@ namespace Gama.Curso.Controllers
         [HttpDelete]
         [Route("{codigoCuso}")]
         [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
-        public async Task<ActionResult<CursoAulasResponse>> BuscarCursos(int codigoCuso)
+        public async Task<ActionResult<CursoAulasResponse>> DeletarCurso(int codigoCuso)
         {
             return Ok(await _cursoService.DeletarCurso(codigoCuso));
         }

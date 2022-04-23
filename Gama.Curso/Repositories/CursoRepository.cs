@@ -8,12 +8,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using static Dapper.SqlBuilder;
 
 namespace Gama.Curso.Repositories
 {
     public class CursoRepository : Postgree, ICursoRespository
     {
-        public async Task<CursoAulasModel> BuscarDadosCurso(int codigoCurso)
+        public async Task<IEnumerable<CursoAulasModel>> BuscarCursos(int codigoCurso = 0)
         {
             string sql = @"  SELECT CUR.COD_CURSO CodigoCurso,
                                     CUR.NOM_CURSO NomeCurso,
@@ -31,36 +32,55 @@ namespace Gama.Curso.Repositories
                                FROM CURSO CUR 
                                     LEFT JOIN AULA_CURSO AC ON AC.COD_CURSO = CUR.COD_CURSO AND AC.ATIVO
                                     LEFT JOIN AULA AL ON AL.COD_AULA = AC.COD_AULA AND AL.ATIVO
-                            WHERE CUR.COD_CURSO = @CodigoCurso
-                              AND CUR.ATIVO";
 
-            using (IDbConnection connection = GetConnection())
+                                        /**where**/";
+
+            SqlBuilder sqlBuilder = new SqlBuilder();
+            Template template = sqlBuilder.AddTemplate(sql);
+
+            sqlBuilder.Where("CUR.ATIVO");
+
+            if (codigoCurso > 0)
+                sqlBuilder.Where("CUR.COD_CURSO = @CodigoCurso", new { codigoCurso });
+            try
             {
-                CursoAulasModel cursoAulas = new CursoAulasModel();
-                _ = await connection.QueryAsync<CursoAulasModel>(
-                    sql,
-                     new[] {
+                using (IDbConnection connection = GetConnection())
+                {
+                    Dictionary<int, CursoAulasModel> lookup = new Dictionary<int, CursoAulasModel>();
+                    IEnumerable<CursoAulasModel> cursosAulas = await connection.QueryAsync(template.RawSql,
+                         new[] {
                                     typeof(CursoModel),
                                     typeof(AulaModel)
-                     },
-                     obj =>
-                     {
-                         CursoModel curso = obj[0] as CursoModel;
-                         AulaModel aula = obj[1] as AulaModel;
+                         },
+                         obj =>
+                         {
+                             CursoAulasModel cursoAula = new CursoAulasModel();
+                             CursoModel curso = obj[0] as CursoModel;
 
-                         cursoAulas.Curso = curso;
-                         if (cursoAulas.Aulas == null)
-                             cursoAulas.Aulas = new List<AulaModel>();
+                             if (!lookup.TryGetValue(curso.CodigoCurso, out cursoAula))
+                             {
+                                 cursoAula = new CursoAulasModel { Curso = curso };
+                                 lookup.Add(curso.CodigoCurso, cursoAula);
+                             }
+                             if (cursoAula.Aulas == null)
+                                 cursoAula.Aulas = new List<AulaModel>();
 
-                         if (aula != null)
-                             cursoAulas.Aulas.Add(aula);
+                             if (obj[1] is AulaModel aula)
+                                 cursoAula.Aulas.Add(aula);
 
-                         return null;
-                     },
-                new { CodigoCurso = codigoCurso }, null, true, splitOn: "CodigoCurso,CodigoAula");
+                             return cursoAula;
+                         },
+                         template.Parameters, null, true, splitOn: "CodigoCurso,CodigoAula");
 
-                return cursoAulas;
+                    return lookup.Values;
+                }
             }
+
+            catch (Exception e)
+            {
+                return Enumerable.Empty<CursoAulasModel>();
+            }
+
         }
 
 
@@ -110,7 +130,7 @@ namespace Gama.Curso.Repositories
                 await connection.ExecuteAsync(sql, argument);
             }
         }
-        public async Task<IEnumerable<DadosCursoModel>> BuscarCursos()
+        public async Task<IEnumerable<DadosCursoModel>> BuscarDadosCursos()
         {
             const string sql = @"SELECT CUR.COD_CURSO CodigoCurso,
    	                                    CUR.NOM_CURSO NomeCurso,

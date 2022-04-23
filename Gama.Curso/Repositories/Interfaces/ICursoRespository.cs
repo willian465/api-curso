@@ -11,10 +11,10 @@ namespace Gama.Curso.Repositories.Interfaces
     {
         Task<int> CriarCurso(CursoArgument argument);
         Task RegistrarAulaCurso(AulaCursoArgument argument);
-        Task<CursoAulasModel> BuscarDadosCurso(int codigoCurso);
+        Task<IEnumerable<CursoAulasModel>> BuscarCursos(int codigoCurso = 0);
         Task DeletarAulaCurso(int codigoCurso, int codigoAula);
         Task DeletarCurso(int codigoCurso);
-        Task<IEnumerable<DadosCursoModel>> BuscarCursos();
+        Task<IEnumerable<DadosCursoModel>> BuscarDadosCursos();
         Task AlterarCurso(int codigoCurso, AlterarCursoArgument argument);
     }
 }

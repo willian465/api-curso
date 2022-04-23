@@ -35,18 +35,15 @@ namespace Gama.Curso.Services
             return true;
         }
 
-        public async Task<CursoAulasResponse> BuscarCurso(int codigoCurso)
+        public async Task<IEnumerable<CursoAulasResponse>> BuscarCursos()
         {
-            if (codigoCurso == 0)
-                throw new CursoException("Código de curso inválido");
-
-            return _converter.Map<CursoAulasResponse>(await _cursoRepository.BuscarDadosCurso(codigoCurso));
+            return _converter.Map<IEnumerable<CursoAulasResponse>>(await _cursoRepository.BuscarCursos());
         }
 
-        public async Task<IEnumerable<DadosCursoResponse>> BuscarCursos()
+        public async Task<IEnumerable<DadosCursoResponse>> BuscarDadosCursos()
         {
             return _converter.Map<IEnumerable<DadosCursoResponse>>(
-                await _cursoRepository.BuscarCursos()
+                await _cursoRepository.BuscarDadosCursos()
                 );
         }
 
@@ -89,7 +86,7 @@ namespace Gama.Curso.Services
                 throw new CursoException($"Ocorreu um erro ao salvar o curso. MSG: {e.Message}");
             }
 
-            return _converter.Map<CursoAulasResponse>(await _cursoRepository.BuscarDadosCurso(codigoCurso));
+            return _converter.Map<CursoAulasResponse>((await _cursoRepository.BuscarCursos(codigoCurso)).FirstOrDefault());
         }
 
         public async Task<bool> DeletarAulaCurso(int codigoCurso, int codigoAula)
