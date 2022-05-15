@@ -14,7 +14,7 @@ namespace Gama.Curso.Repositories
 {
     public class CursoRepository : Postgree, ICursoRespository
     {
-        public async Task<IEnumerable<CursoAulasModel>> BuscarCursos(int codigoCurso = 0)
+        public async Task<IEnumerable<CursoAulasModel>> BuscarCursos(int codigoCurso)
         {
             string sql = @"  SELECT CUR.COD_CURSO CodigoCurso,
                                     CUR.NOM_CURSO NomeCurso,
