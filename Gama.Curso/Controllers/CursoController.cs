@@ -22,7 +22,7 @@ namespace Gama.Curso.Controllers
             _cursoService = cursoService;
         }
         /// <summary>
-        /// Método para gerar um curso com suas aulas
+        /// Método para gerar um curso com suas aulas 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -33,9 +33,8 @@ namespace Gama.Curso.Controllers
             return Ok(await _cursoService.CriarCurso(request));
         }
         /// <summary>
-        /// Método para buscar um curso
+        /// Método para buscar os cursos
         /// </summary>
-        /// <param name="codigoCurso"></param>
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]

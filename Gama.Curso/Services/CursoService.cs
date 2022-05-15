@@ -83,7 +83,7 @@ namespace Gama.Curso.Services
             }
             catch (Exception e)
             {
-                throw new CursoException($"Ocorreu um erro ao salvar o curso. MSG: {e.Message}");
+                throw new CursoException($"Ocorreu um erro ao salvar o curso,. MSG: {e.Message}");
             }
 
             return _converter.Map<CursoAulasResponse>((await _cursoRepository.BuscarCursos(codigoCurso)).FirstOrDefault());

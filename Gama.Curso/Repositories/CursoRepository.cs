@@ -49,24 +49,28 @@ namespace Gama.Curso.Repositories
                     Dictionary<int, CursoAulasModel> lookup = new Dictionary<int, CursoAulasModel>();
                     IEnumerable<CursoAulasModel> cursosAulas = await connection.QueryAsync(template.RawSql,
                          new[] {
-                                    typeof(CursoModel),
+                                    typeof(CursoAulasModel),
                                     typeof(AulaModel)
                          },
                          obj =>
                          {
                              CursoAulasModel cursoAula = new CursoAulasModel();
-                             CursoModel curso = obj[0] as CursoModel;
+                             CursoAulasModel cursoAulaTemp = obj[0] as CursoAulasModel;
+                             AulaModel aula = obj[1] as AulaModel;
 
-                             if (!lookup.TryGetValue(curso.CodigoCurso, out cursoAula))
+                             if (!lookup.TryGetValue(cursoAulaTemp.CodigoCurso, out cursoAula))
                              {
-                                 cursoAula = new CursoAulasModel { Curso = curso };
-                                 lookup.Add(curso.CodigoCurso, cursoAula);
+                                 cursoAulaTemp.Aulas = new List<AulaModel>();
+                                 if (aula != null)
+                                     cursoAulaTemp.Aulas.Add(aula);
+                                 lookup.Add(cursoAulaTemp.CodigoCurso, cursoAulaTemp);
+                                 cursoAula = cursoAulaTemp;
                              }
-                             if (cursoAula.Aulas == null)
-                                 cursoAula.Aulas = new List<AulaModel>();
-
-                             if (obj[1] is AulaModel aula)
-                                 cursoAula.Aulas.Add(aula);
+                             else
+                             {
+                                 if (aula != null)
+                                     cursoAula.Aulas.Add(aula);
+                             }
 
                              return cursoAula;
                          },
