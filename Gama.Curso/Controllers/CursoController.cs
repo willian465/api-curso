@@ -47,7 +47,7 @@ namespace Gama.Curso.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("ativo")]
+        [Route("resumido")]
         [ProducesResponseType(typeof(IEnumerable<DadosCursoResponse>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<DadosCursoResponse>>> BuscarDadosCursos()
         {
