@@ -21,11 +21,11 @@ namespace Gama.Curso.Controllers
         {
             _cursoService = cursoService;
         }
-        /// <summary>
-        /// Método para gerar um curso com suas aulas 
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
+       /// <summary>
+       /// Método para criar um novo curso com suas aulas
+       /// </summary>
+       /// <param name="request"></param>
+       /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
         public async Task<ActionResult<CursoAulasResponse>> CriarCurso([FromBody] CriarCursoRequest request)

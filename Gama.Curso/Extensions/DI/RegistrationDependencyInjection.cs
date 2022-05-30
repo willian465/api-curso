@@ -27,12 +27,14 @@ namespace Gama.Curso.Extensions.DI
         {
             services.AddScoped<IAulaRepository, AulaRepository>();
             services.AddScoped<ICursoRespository, CursoRepository>();
+            services.AddScoped<IReacaoRepository, ReacaoRepository>();
         }
 
         public static void ResgistrarServices(IServiceCollection services)
         {
             services.AddScoped<IAulaService, AulaService>();
             services.AddScoped<ICursoService, CursoService>();
+            services.AddScoped<IReacaoService, ReacaoService>();
         }
     }
 }
