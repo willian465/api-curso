@@ -103,7 +103,7 @@ namespace Gama.Curso
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint($"{routerPrefix}/swagger/v1/swagger.json", $"{_configuration.GetSection("Application").GetValue<string>("EndpointName")}");
-                c.RoutePrefix = string.Empty;
+                c.RoutePrefix = "swagger";
             });
         }
     }
