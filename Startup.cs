@@ -103,7 +103,7 @@ namespace Gama.Curso
             app.UseSwaggerUI(c =>
             {
                 
-                c.SwaggerEndpoint($"{routerPrefix}/swagger/v1/swagger.json", "https://api-curso.azurewebsites.net/index.html");
+                c.SwaggerEndpoint($"{routerPrefix}/swagger/v1/swagger.json", "https://api-curso.azurewebsites.net");
                 c.RoutePrefix = string.Empty;
             });
         }
