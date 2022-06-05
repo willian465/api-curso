@@ -49,7 +49,7 @@ namespace Gama.Curso.Services
 
         public async Task<CursoAulasResponse> CriarCurso(CriarCursoRequest request)
         {
-            if (request == null)
+            if (request.Aulas == null)
                 throw new CursoException("Request inválido");
 
             int codigoCurso;

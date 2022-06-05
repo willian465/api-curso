@@ -45,6 +45,11 @@ namespace Gama.Curso.Controllers
             await _reacaoService.DeletarReacao(codigoReacao);
             return NoContent();
         }
+        /// <summary>
+        /// Método para buscar todas as reações
+        /// </summary>
+        /// <param name="codigosExterno"></param>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ReacaoEntidadeResponse>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ReacaoEntidadeResponse>>> BuscarReacoes([FromQuery] IEnumerable<int> codigosExterno)

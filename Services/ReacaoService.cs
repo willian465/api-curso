@@ -1,12 +1,11 @@
 ﻿using Gama.Curso.Arguments;
 using Gama.Curso.Configurations.Enum;
+using Gama.Curso.Exceptions;
 using Gama.Curso.Mappers;
 using Gama.Curso.Repositories.Interfaces;
 using Gama.Curso.Requests;
 using Gama.Curso.Responses;
 using Gama.Curso.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,6 +47,9 @@ namespace Gama.Curso.Services
         }
         public async Task<IEnumerable<ReacaoEntidadeResponse>> BuscarReacoes(IEnumerable<int> codigosExterno)
         {
+            if (codigosExterno.Any() && codigosExterno.All(x => x == 0))
+                throw new ReacaoException("Valores inválidos para a busca de reações");
+
             return _converter.Map<IEnumerable<ReacaoEntidadeResponse>>(await _reacaoRepository.BuscarReacoes(codigosExterno.ToList()));
         }
     }
