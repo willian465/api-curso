@@ -6,19 +6,18 @@
     <members>
         <member name="M:Gama.Curso.Controllers.CursoController.CriarCurso(Gama.Curso.Requests.CriarCursoRequest)">
             <summary>
-            Método para gerar um curso com suas aulas
+            Método para criar um novo curso com suas aulas
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:Gama.Curso.Controllers.CursoController.BuscarCurso(System.Int32)">
+        <member name="M:Gama.Curso.Controllers.CursoController.BuscarCursos">
             <summary>
-            Método para buscar um curso
+            Método para buscar os cursos
             </summary>
-            <param name="codigoCurso"></param>
             <returns></returns>
         </member>
-        <member name="M:Gama.Curso.Controllers.CursoController.BuscarCursos">
+        <member name="M:Gama.Curso.Controllers.CursoController.BuscarDadosCursos">
             <summary>
             Método para buscar todos os cursos cadastrados
             </summary>
@@ -32,14 +31,37 @@
             <param name="codigoAula"></param>
             <returns></returns>
         </member>
-        <member name="M:Gama.Curso.Controllers.CursoController.BuscarCursos(System.Int32)">
+        <member name="M:Gama.Curso.Controllers.CursoController.DeletarCurso(System.Int32)">
             <summary>
             Método para deletar um curso
             </summary>
             <param name="codigoCuso"></param>
             <returns></returns>
         </member>
-        <member name="M:Conta.Extensions.DI.RegistrationDependencyInjection.RegistrarDependencias(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Gama.Curso.Controllers.CursoController.AtualizarCurso(System.Int32,Gama.Curso.Requests.AlterarCursoRequest)">
+            <summary>
+            Método para atualizar a descrição do curso
+            </summary>
+            <param name="codigoCuso"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gama.Curso.Controllers.ReacaoController.RegistrarReacao(Gama.Curso.Configurations.Enum.EntidadeEnum,Gama.Curso.Requests.ReacaoRequest)">
+            <summary>
+            Método para reagir a um curso ou uma aula
+            </summary>
+            <param name="endidade"> 1- Curso 2 - Aula </param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gama.Curso.Controllers.ReacaoController.DeletarReacao(System.Int32)">
+            <summary>
+            Método para deletar uma reação
+            </summary>
+            <param name="codigoReacao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gama.Curso.Extensions.DI.RegistrationDependencyInjection.RegistrarDependencias(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Método para realizar o registro das dependências
             </summary>
