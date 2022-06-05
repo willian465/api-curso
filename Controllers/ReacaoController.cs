@@ -4,6 +4,7 @@ using Gama.Curso.Responses;
 using Gama.Curso.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Gama.Curso.Controllers
@@ -27,7 +28,7 @@ namespace Gama.Curso.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReacaoReponse>> RegistrarReacao(EntidadeEnum endidade, [FromBody] ReacaoRequest request)
+        public async Task<ActionResult<ReacaoReponse>> RegistrarReacao(EntidadeEnum endidade, [FromBody] RegistarReacaoRequest request)
         {
             return Ok(await _reacaoService.RegistrarReacao(endidade, request));
         }
@@ -43,6 +44,12 @@ namespace Gama.Curso.Controllers
         {
             await _reacaoService.DeletarReacao(codigoReacao);
             return NoContent();
+        }
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<ReacaoEntidadeResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<ReacaoEntidadeResponse>>> BuscarReacoes([FromQuery] IEnumerable<int> codigosExterno)
+        {
+            return Ok(await _reacaoService.BuscarReacoes(codigosExterno));
         }
     }
 }

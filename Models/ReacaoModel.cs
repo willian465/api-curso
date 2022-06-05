@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gama.Curso.Responses
+namespace Gama.Curso.Models
 {
-    public class ReacaoReponse : ReacaoDTO
+    public class ReacaoModel : ReacaoDTO
     {
     }
 }

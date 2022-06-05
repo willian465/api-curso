@@ -16,6 +16,8 @@ namespace Gama.Curso.Mappers.Profiles
             CreateMap<AulaModel, AulaResponse>().ReverseMap();
             CreateMap<CursoModel, CursoResponse>().ReverseMap();
             CreateMap<DadosCursoModel, DadosCursoResponse>().ReverseMap();
+            CreateMap<ReacaoEntidadeModel, ReacaoEntidadeResponse>().ReverseMap();
+            CreateMap<ReacaoModel, ReacaoReponse>().ReverseMap();
         }
     }
 }

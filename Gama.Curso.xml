@@ -46,7 +46,7 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:Gama.Curso.Controllers.ReacaoController.RegistrarReacao(Gama.Curso.Configurations.Enum.EntidadeEnum,Gama.Curso.Requests.ReacaoRequest)">
+        <member name="M:Gama.Curso.Controllers.ReacaoController.RegistrarReacao(Gama.Curso.Configurations.Enum.EntidadeEnum,Gama.Curso.Requests.RegistarReacaoRequest)">
             <summary>
             Método para reagir a um curso ou uma aula
             </summary>

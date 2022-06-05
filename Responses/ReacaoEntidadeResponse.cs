@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gama.Curso.Responses
 {
-    public class ReacaoReponse : ReacaoDTO
-    {
+    public class ReacaoEntidadeResponse : ReacaoEntidadeDTO<ReacaoReponse> 
+    { 
     }
 }

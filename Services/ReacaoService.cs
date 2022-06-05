@@ -5,6 +5,7 @@ using Gama.Curso.Repositories.Interfaces;
 using Gama.Curso.Requests;
 using Gama.Curso.Responses;
 using Gama.Curso.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,13 @@ namespace Gama.Curso.Services
     public class ReacaoService : IReacaoService
     {
         private readonly IReacaoRepository _reacaoRepository;
+        private readonly IConverter _converter;
 
-        public ReacaoService(IReacaoRepository reacaoRepository)
+        public ReacaoService(IReacaoRepository reacaoRepository,
+                             IConverter converter)
         {
             _reacaoRepository = reacaoRepository;
+            _converter = converter;
         }
 
         public async Task DeletarReacao(int codigoReacao)
@@ -26,7 +30,7 @@ namespace Gama.Curso.Services
             await _reacaoRepository.DeletarReacao(codigoReacao);
         }
 
-        public async Task<ReacaoReponse> RegistrarReacao(EntidadeEnum endidade, ReacaoRequest request)
+        public async Task<ReacaoReponse> RegistrarReacao(EntidadeEnum endidade, RegistarReacaoRequest request)
         {
             int codigoReacao = await _reacaoRepository.RegistrarReacao(
                                                         new ReacaoArgument
@@ -36,11 +40,15 @@ namespace Gama.Curso.Services
                                                             CodigoTipoReacao = (int)request.TipoReacao
                                                         });
 
-            return new ReacaoReponse()
+            return new ReacaoReponse() 
             {
-                CodigoExterno = request.CodigoExterno,
-                CodigoReacao = codigoReacao
+                CodigoReacao = codigoReacao,
+                CodigoTipoReacao = (int)request.TipoReacao
             };
+        }
+        public async Task<IEnumerable<ReacaoEntidadeResponse>> BuscarReacoes(IEnumerable<int> codigosExterno)
+        {
+            return _converter.Map<IEnumerable<ReacaoEntidadeResponse>>(await _reacaoRepository.BuscarReacoes(codigosExterno.ToList()));
         }
     }
 }

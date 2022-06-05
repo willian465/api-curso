@@ -11,7 +11,8 @@ namespace Gama.Curso.Services.Interfaces
 {
     public interface IReacaoService
     {
-        Task<ReacaoReponse> RegistrarReacao(EntidadeEnum endidade, ReacaoRequest request);
+        Task<ReacaoReponse> RegistrarReacao(EntidadeEnum endidade, RegistarReacaoRequest request);
         Task DeletarReacao(int codigoReacao);
+        Task<IEnumerable<ReacaoEntidadeResponse>> BuscarReacoes(IEnumerable<int> codigosExterno);
     }
 }

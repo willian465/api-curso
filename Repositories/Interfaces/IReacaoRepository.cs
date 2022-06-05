@@ -1,4 +1,5 @@
 ﻿using Gama.Curso.Arguments;
+using Gama.Curso.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace Gama.Curso.Repositories.Interfaces
     {
         Task<int> RegistrarReacao(ReacaoArgument argument);
         Task DeletarReacao(int codigoReacao);
+        Task<IEnumerable<ReacaoEntidadeModel>> BuscarReacoes(List<int> codigosExterno);
     }
 }

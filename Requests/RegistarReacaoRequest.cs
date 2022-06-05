@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gama.Curso.Requests
 {
-    public class ReacaoRequest
+    public class RegistarReacaoRequest
     {
         public int CodigoExterno { get; set; }
         public TipoReacaoEnum TipoReacao { get; set; }
