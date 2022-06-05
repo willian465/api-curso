@@ -86,7 +86,7 @@ namespace Gama.Curso
             {
                 endpoints.MapControllers();
             });
-
+            app.UseStaticFiles();
             UseSwagger(app, "");
 
         }
