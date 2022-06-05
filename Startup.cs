@@ -86,7 +86,7 @@ namespace Gama.Curso
             {
                 endpoints.MapControllers();
             });
-            app.UseStaticFiles();
+
             UseSwagger(app, "");
 
         }
@@ -102,9 +102,8 @@ namespace Gama.Curso
                 }));
             app.UseSwaggerUI(c =>
             {
-                //c.SwaggerEndpoint($"{routerPrefix}/swagger/v1/swagger.json", $"{_configuration.GetSection("Application").GetValue<string>("EndpointName")}");
-                c.SwaggerEndpoint($"{routerPrefix}/swagger/v1/swagger.json", $"v1");
-                c.RoutePrefix = "swagger";
+                c.SwaggerEndpoint($"{routerPrefix}/swagger/v1/swagger.json", $"{_configuration.GetSection("Application").GetValue<string>("EndpointName")}");
+                c.RoutePrefix = string.Empty;
             });
         }
     }
