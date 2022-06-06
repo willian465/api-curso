@@ -46,7 +46,7 @@ namespace Gama.Curso.Controllers
             return NoContent();
         }
         /// <summary>
-        /// Método para buscar todas as reações
+        /// Método para buscar todas as reações pelo código externo
         /// </summary>
         /// <param name="codigosExterno"></param>
         /// <returns></returns>

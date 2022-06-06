@@ -35,9 +35,11 @@ namespace Gama.Curso.Services
             return true;
         }
 
-        public async Task<IEnumerable<CursoAulasResponse>> BuscarCursos()
+        public async Task<IEnumerable<CursoAulasResponse>> BuscarCursos(Nullable<int> codigoCurso = null)
         {
-            return _converter.Map<IEnumerable<CursoAulasResponse>>(await _cursoRepository.BuscarCursos()).OrderBy(x => x.CodigoCurso);
+            return _converter.Map<IEnumerable<CursoAulasResponse>>(await _cursoRepository.BuscarCursos(
+                codigoCurso ?? 0
+                )).OrderBy(x => x.CodigoCurso);
         }
 
         public async Task<IEnumerable<DadosCursoResponse>> BuscarDadosCursos()

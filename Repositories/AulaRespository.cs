@@ -23,10 +23,9 @@ namespace Gama.Curso.Repositories
                                   (@TituloAula, @DescricaoAula, @LinkAula, TRUE)
                                 RETURNING COD_AULA";
 
-            using (IDbConnection connection = GetConnection())
-            {
-                 return await connection.ExecuteScalarAsync<int>(sql, argument);
-            }
+            using IDbConnection connection = GetConnection();
+            return await connection.ExecuteScalarAsync<int>(sql, argument);
+
         }
     }
 }

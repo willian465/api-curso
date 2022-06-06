@@ -33,7 +33,7 @@ namespace Gama.Curso.Controllers
             return Ok(await _cursoService.CriarCurso(request));
         }
         /// <summary>
-        /// Método para buscar os cursos
+        /// Método para buscar todos os cursos cadastrados com suas aulas
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -43,7 +43,19 @@ namespace Gama.Curso.Controllers
             return Ok(await _cursoService.BuscarCursos());
         }
         /// <summary>
-        /// Método para buscar todos os cursos cadastrados
+        /// Método para buscar um curso por código
+        /// </summary>
+        /// <param name="codigoCurso"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{codigoCurso}")]
+        [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<CursoAulasResponse>>> BuscarCurso([FromRoute] Nullable<int> codigoCurso)
+        {
+            return Ok(await _cursoService.BuscarCursos(codigoCurso));
+        }
+        /// <summary>
+        /// Método para buscar dados básicos de todos os cursos cadastrados
         /// </summary>
         /// <returns></returns>
         [HttpGet]

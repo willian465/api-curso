@@ -87,7 +87,7 @@ namespace Gama.Curso.Repositories
                 }
             }
 
-            catch (Exception e)
+            catch (Exception)
             {
                 return Enumerable.Empty<ReacaoEntidadeModel>();
             }
