@@ -50,7 +50,7 @@ namespace Gama.Curso.Controllers
         [HttpGet]
         [Route("{codigoCurso}")]
         [ProducesResponseType(typeof(CursoAulasResponse), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<CursoAulasResponse>>> BuscarCurso([FromRoute] Nullable<int> codigoCurso)
+        public async Task<ActionResult<IEnumerable<CursoAulasResponse>>> BuscarCurso([FromRoute] int codigoCurso)
         {
             return Ok(await _cursoService.BuscarCursos(codigoCurso));
         }
