@@ -100,7 +100,7 @@ namespace Gama.Curso
                                                                    new OpenApiServer { Url = $"https://{httpReq.Host.Value}{routerPrefix}" }
                                                                  };*/
 
-                    swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = "https://api-curso.azurewebsites.net" },
+                    swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = "https://api-curso.azurewebsites.net/swagger" },
                                                                    new OpenApiServer { Url = "http://api-curso.azurewebsites.net" }
                                                                  };
 
