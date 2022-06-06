@@ -61,7 +61,7 @@ namespace Gama.Curso.Services
                 codigoCurso = await _cursoRepository.CriarCurso(_converter.Map<CursoArgument>(request.Curso));
 
                 if (codigoCurso == 0)
-                    throw new CursoException($"Ocorreu um erro ao criar o curso {request.Curso.NomeCurso}");
+                    throw new CursoException($"Ocorreu um erro ao criar o curso: {request.Curso.NomeCurso}");
 
                 // aulas 
                 List<int> aulas = await RegistrarAulas(request.Aulas);
