@@ -61,6 +61,13 @@
             <param name="codigoReacao"></param>
             <returns></returns>
         </member>
+        <member name="M:Gama.Curso.Controllers.ReacaoController.BuscarReacoes(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Método para buscar todas as reações
+            </summary>
+            <param name="codigosExterno"></param>
+            <returns></returns>
+        </member>
         <member name="M:Gama.Curso.Extensions.DI.RegistrationDependencyInjection.RegistrarDependencias(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Método para realizar o registro das dependências

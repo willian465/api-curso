@@ -92,11 +92,16 @@ namespace Gama.Curso
         }
         private void UseSwagger(IApplicationBuilder app, string routerPrefix)
         {
+            var teste = $"{_configuration.GetSection("Application").GetValue<string>("EndpointName")}";
             app.UseSwagger(
                 c => c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
                 {
-                    swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"{httpReq.Scheme}://{httpReq.Host.Value}{routerPrefix}" },
+                    /*swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"{httpReq.Scheme}://{httpReq.Host.Value}{routerPrefix}" },
                                                                    new OpenApiServer { Url = $"https://{httpReq.Host.Value}{routerPrefix}" }
+                                                                 };*/
+
+                    swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = "https://api-curso.azurewebsites.net" },
+                                                                   new OpenApiServer { Url = "http://api-curso.azurewebsites.net" }
                                                                  };
 
                 }));

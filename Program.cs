@@ -13,10 +13,14 @@ namespace Gama.Curso
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            IConfigurationRoot config = new ConfigurationBuilder()
+             .AddJsonFile("appsettings.json")
+             .Build();
+
+            CreateHostBuilder(args, config).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        public static IHostBuilder CreateHostBuilder(string[] args, IConfiguration configuration) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
